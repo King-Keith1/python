@@ -17,7 +17,7 @@
 #           "African wild dog",
 #           "Domestic dog"]
 
-# for canidea in canine:  # Loop through each item in the list
+# for canidea in canine:  
 #     if canidea == "Wolf":
 #         print("Wolves are known for their pack hunting strategies.")
 #     elif canidea == "African wild dog":
