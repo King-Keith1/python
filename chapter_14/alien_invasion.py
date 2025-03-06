@@ -1,8 +1,6 @@
 import sys
 from time import sleep
-
 import pygame
-
 from settings import Settings
 from game_stats import GameStats
 from scoreboard import Scoreboard
@@ -10,7 +8,7 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
-
+from boss import Boss
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -23,16 +21,17 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Alien Invasion")
+        pygame.display.set_caption("Jeff Saves The World")
 
-        # Create an instance to store game statistics,
-        #   and create a scoreboard.
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+        
+        self.boss = None  # Boss reference
+        self.boss_group = pygame.sprite.Group()
 
         self._create_fleet()
 
@@ -130,10 +129,9 @@ class AlienInvasion:
         self._check_bullet_alien_collisions()
 
     def _check_bullet_alien_collisions(self):
-        """Respond to bullet-alien collisions."""
-        # Remove any bullets and aliens that have collided.
-        collisions = pygame.sprite.groupcollide(
-                self.bullets, self.aliens, True, True)
+    
+    
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
         if collisions:
             for aliens in collisions.values():
@@ -141,15 +139,27 @@ class AlienInvasion:
             self.sb.prep_score()
             self.sb.check_high_score()
 
-        if not self.aliens:
-            # Destroy existing bullets and create new fleet.
+        # Check if all aliens are defeated and no boss is active
+        if not self.aliens and not self.boss:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
-
-            # Increase level.
             self.stats.level += 1
             self.sb.prep_level()
+            self.spawn_boss()
+
+        # **New: Check for bullet-boss collisions**
+        if self.boss:
+            boss_hits = pygame.sprite.spritecollide(self.boss, self.bullets, True)
+            if boss_hits:
+                self.boss.hp -= len(boss_hits) * 10  # Reduce boss HP by 10 per hit
+
+            if self.boss.hp <= 0:
+                    self.boss.kill()
+                    self.boss = None  # Remove the boss reference
+                    self.stats.score += 500  # Bonus points for defeating the boss
+                    self.sb.prep_score()
+                    self.sb.check_high_score()
 
     def _ship_hit(self):
         """Respond to the ship being hit by an alien."""
@@ -183,6 +193,10 @@ class AlienInvasion:
 
         # Look for aliens hitting the bottom of the screen.
         self._check_aliens_bottom()
+
+        # Update the boss if it exists.
+        if self.boss:
+            self.boss_group.update()
 
     def _check_aliens_bottom(self):
         """Check if any aliens have reached the bottom of the screen."""
@@ -230,6 +244,13 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
 
+    def spawn_boss(self):
+        """Spawn the boss when all aliens are defeated."""
+        self.boss = Boss(self)
+        self.boss.speed = self.settings.ship_speed * 1.5
+        self.boss.hp = 100
+        self.boss_group.add(self.boss)
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
@@ -237,6 +258,11 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # Draw the boss if it exists.
+        if self.boss:
+            self.boss_group.draw(self.screen)
+            self._draw_boss_hp()
 
         # Draw the score information.
         self.sb.show_score()
@@ -246,6 +272,18 @@ class AlienInvasion:
             self.play_button.draw_button()
 
         pygame.display.flip()
+
+    def _draw_boss_hp(self):
+        """Draw the boss health bar."""
+        if self.boss:
+            bar_width = 300
+            bar_height = 20
+            bar_x = (self.settings.screen_width - bar_width) // 2
+            bar_y = 10
+            hp_percentage = self.boss.hp / 100
+            hp_width = int(bar_width * hp_percentage)
+            pygame.draw.rect(self.screen, (255, 0, 0), (bar_x, bar_y, bar_width, bar_height))
+            pygame.draw.rect(self.screen, (0, 255, 0), (bar_x, bar_y, hp_width, bar_height))
 
 
 if __name__ == '__main__':

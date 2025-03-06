@@ -6,7 +6,7 @@ class Settings:
         # Screen settings
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (230, 230, 230)
+        self.bg_color = (0, 0, 255)
 
         # Ship settings
         self.ship_limit = 3
@@ -15,7 +15,7 @@ class Settings:
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
-        self.bullets_allowed = 3
+        self.bullets_allowed = 444
 
         # Alien settings
         self.fleet_drop_speed = 10
@@ -24,6 +24,10 @@ class Settings:
         self.speedup_scale = 1.1
         # How quickly the alien point values increase
         self.score_scale = 1.5
+
+        # Boss settings
+        self.boss_speed = 2.5
+        self.boss_health = 100
 
         self.initialize_dynamic_settings()
 
