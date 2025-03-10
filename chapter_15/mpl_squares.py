@@ -92,24 +92,24 @@
 # # Show the graph
 # plt.show()
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-# # Group members and their contributions
-# members = ["Pierre", "Ronny", "Marvelous", "Ethan"]
-# contributions = [27, 22, 46, 48]
-# colors = ["#ff6361", "#bc5090", "#58508d", "#ffa600"]  # Assign different colors
+# Group members and their contributions
+members = ["Pierre", "Ronny", "Marvelous", "Ethan"]
+contributions = [27, 22, 46, 48]
+colors = ["#ff6361", "#bc5090", "#58508d", "#ffa600"]  # Assign different colors
 
-# plt.style.use('seaborn-v0_8')
-# fig, ax = plt.subplots()
-# ax.bar(members, contributions, color=colors)
+plt.style.use('seaborn-v0_8')
+fig, ax = plt.subplots()
+ax.bar(members, contributions, color=colors)
 
-# # Set chart title and labels
-# ax.set_title("404 Avengers GitHub Contributions", fontsize=16)
-# ax.set_xlabel("Members", fontsize=12)
-# ax.set_ylabel("Number of Contributions", fontsize=12)
-# ax.set_facecolor("black")  # Set background color
+# Set chart title and labels
+ax.set_title("404 Avengers GitHub Contributions", fontsize=16)
+ax.set_xlabel("Members", fontsize=12)
+ax.set_ylabel("Number of Contributions", fontsize=12)
+ax.set_facecolor("black")  # Set background color
 
-# # Display the chart
-# plt.show()
+# Display the chart
+plt.show()
 
 
