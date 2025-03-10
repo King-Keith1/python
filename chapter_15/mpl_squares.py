@@ -56,8 +56,41 @@
 # plt.show()
 
 # Marvelous's code
+# import matplotlib.pyplot as plt
 
+# # Group members and their contributions
+# members = ["Ethan", "Marvelous", "Pierre", "Ronny"]
+# contributions = [48, 46, 27, 22]  # Same values as the bar chart
 
+# # Convert member names to numerical x-axis positions
+# x_positions = range(len(members))
+
+# # Create a visually appealing line graph
+# plt.figure(figsize=(10, 6))
+# plt.plot(x_positions, contributions, marker="o", linestyle="-", color="#FF4500", linewidth=4, 
+#          markersize=12, markerfacecolor="black", markeredgewidth=2, markeredgecolor="yellow")
+
+# # Add title and labels with dramatic styling
+# plt.title("⚡ 404 Avengers - GitHub Contributions ⚡", fontsize=20, fontweight="bold", color="purple")
+# plt.xlabel("Members", fontsize=14, fontweight="bold", color="darkred")
+# plt.ylabel("Number of Contributions", fontsize=14, fontweight="bold", color="darkblue")
+
+# # Set custom x-ticks to display member names
+# plt.xticks(x_positions, members)
+
+# # Add value labels with enhanced styling
+# for i, v in enumerate(contributions):
+#     plt.text(i, v + 1, str(v), ha="center", fontsize=14, fontweight="bold", color="white",
+#              bbox=dict(facecolor="blue", edgecolor="white", boxstyle="round,pad=0.5"))
+
+# # Enhanced grid with neon-style glow
+# plt.grid(axis="y", linestyle="--", alpha=0.3, color="cyan")
+
+# # Dark background for a futuristic feel
+# plt.gca().set_facecolor("#222222")
+
+# # Show the graph
+# plt.show()
 
 # import matplotlib.pyplot as plt
 
