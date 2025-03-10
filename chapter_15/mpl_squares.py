@@ -92,24 +92,89 @@
 # # Show the graph
 # plt.show()
 
+# import matplotlib.pyplot as plt
+
+# # Group members and their contributions
+# members = ["Pierre", "Ronny", "Marvelous", "Ethan"]
+# contributions = [27, 22, 46, 48]
+# colors = ["#ff6361", "#bc5090", "#58508d", "#ffa600"]  # Assign different colors
+
+# plt.style.use('seaborn-v0_8')
+# fig, ax = plt.subplots()
+# ax.bar(members, contributions, color=colors)
+
+# # Set chart title and labels
+# ax.set_title("404 Avengers GitHub Contributions", fontsize=16)
+# ax.set_xlabel("Members", fontsize=12)
+# ax.set_ylabel("Number of Contributions", fontsize=12)
+# ax.set_facecolor("black")  # Set background color
+
+# # Display the chart
+# plt.show()
+
+# 15.1
+
+# import matplotlib.pyplot as plt
+
+# # Generate data
+# x_small = list(range(1, 6))  # First five numbers
+# y_small = [x**3 for x in x_small]
+
+# x_large = list(range(1, 5001))  # First 5000 numbers
+# y_large = [x**3 for x in x_large]
+
+# # Plot first five cubic numbers
+# plt.figure(figsize=(6, 4))
+# plt.plot(x_small, y_small, 'bo-', label="First 5 Cubes")
+# plt.xlabel("Number")
+# plt.ylabel("Cube")
+# plt.title("First Five Cubic Numbers")
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+
+# # Plot first 5000 cubic numbers
+# plt.figure(figsize=(10, 5))
+# plt.plot(x_large, y_large, 'r-', label="First 5000 Cubes")
+# plt.xlabel("Number")
+# plt.ylabel("Cube")
+# plt.title("First 5000 Cubic Numbers")
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+
+# 15.2
+
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Group members and their contributions
-members = ["Pierre", "Ronny", "Marvelous", "Ethan"]
-contributions = [27, 22, 46, 48]
-colors = ["#ff6361", "#bc5090", "#58508d", "#ffa600"]  # Assign different colors
+# Generate data
+x_small = np.arange(1, 6)  # First five numbers
+y_small = x_small**3
 
-plt.style.use('seaborn-v0_8')
-fig, ax = plt.subplots()
-ax.bar(members, contributions, color=colors)
+x_large = np.arange(1, 5001)  # First 5000 numbers
+y_large = x_large**3
 
-# Set chart title and labels
-ax.set_title("404 Avengers GitHub Contributions", fontsize=16)
-ax.set_xlabel("Members", fontsize=12)
-ax.set_ylabel("Number of Contributions", fontsize=12)
-ax.set_facecolor("black")  # Set background color
-
-# Display the chart
+# Plot first five cubic numbers with colormap
+plt.figure(figsize=(6, 4))
+plt.scatter(x_small, y_small, c=y_small, cmap='viridis', edgecolor='black', s=100)
+plt.xlabel("Number")
+plt.ylabel("Cube")
+plt.title("First Five Cubic Numbers with Colormap")
+plt.colorbar(label="Cube Value")  
+plt.grid(True)
 plt.show()
 
+# Plot first 5000 cubic numbers with colormap
+plt.figure(figsize=(10, 5))
+plt.scatter(x_large, y_large, c=y_large, cmap='plasma', edgecolor='none', s=5)
+plt.xlabel("Number")
+plt.ylabel("Cube")
+plt.title("First 5000 Cubic Numbers with Colormap")
+plt.colorbar(label="Cube Value")  
+plt.grid(True)
+plt.show()
+
+
+15.3
 
