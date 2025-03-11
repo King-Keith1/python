@@ -145,34 +145,34 @@
 
 15.2
 
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 
-# Generate data
-x_small = np.arange(1, 6)  # First five numbers
-y_small = x_small**3
+# # Generate data
+# x_small = np.arange(1, 6)  # First five numbers
+# y_small = x_small**3
 
-x_large = np.arange(1, 5001)  # First 5000 numbers
-y_large = x_large**3
+# x_large = np.arange(1, 5001)  # First 5000 numbers
+# y_large = x_large**3
 
-# Plot first five cubic numbers with colormap
-plt.figure(figsize=(6, 4))
-plt.scatter(x_small, y_small, c=y_small, cmap='viridis', edgecolor='black', s=100)
-plt.xlabel("Number")
-plt.ylabel("Cube")
-plt.title("First Five Cubic Numbers with Colormap")
-plt.colorbar(label="Cube Value")  
-plt.grid(True)
-plt.show()
+# # Plot first five cubic numbers with colormap
+# plt.figure(figsize=(6, 4))
+# plt.scatter(x_small, y_small, c=y_small, cmap='magma', edgecolor='black', s=100)
+# plt.xlabel("Number")
+# plt.ylabel("Cube")
+# plt.title("First Five Cubic Numbers with Colormap")
+# plt.colorbar(label="Cube Value")  
+# plt.grid(True)
+# plt.show()
 
-# Plot first 5000 cubic numbers with colormap
-plt.figure(figsize=(10, 5))
-plt.scatter(x_large, y_large, c=y_large, cmap='plasma', edgecolor='none', s=5)
-plt.xlabel("Number")
-plt.ylabel("Cube")
-plt.title("First 5000 Cubic Numbers with Colormap")
-plt.colorbar(label="Cube Value")  
-plt.grid(True)
-plt.show()
+# # Plot first 5000 cubic numbers with colormap
+# plt.figure(figsize=(10, 5))
+# plt.scatter(x_large, y_large, c=y_large, cmap='plasma', edgecolor='none', s=5)
+# plt.xlabel("Number")
+# plt.ylabel("Cube")
+# plt.title("First 5000 Cubic Numbers with Colormap")
+# plt.colorbar(label="Cube Value")  
+# plt.grid(True)
+# plt.show()
 
 
